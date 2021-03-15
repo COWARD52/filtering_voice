@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>音障-全天候监测平台</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="static/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="static/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="static/plugins/iCheck/all.css">
+    <link rel="stylesheet" href="static/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="static/plugins/timepicker/bootstrap-timepicker.min.css">
+    <link rel="stylesheet" href="static/bower_components/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="static/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="static/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="static/latin.css">
+
+</head>
+<body class="skin-blue sidebar-mini" style="height: auto; min-height: 100%;">
+
+<div class="wrapper" style="height: auto; min-height: 100%;">
+
+    <header class="main-header">
+        <a class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>任务</b></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>任务中心</b></span>
+        </a>
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown user user-menu">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="static/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{ current_user.phone }}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img src="static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+                                <p>
+                                    {{ current_user.phone }}
+                                    <small>Member since Nov. 2012</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+
+                            <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="/profile" class="btn btn-default btn-flat">个人主页</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="/logout" class="btn btn-default btn-flat">登出</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>{{ current_user.phone }}</p>
+                    <a><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+
+                <li class="header">其他</li>
+                <li><a href="/heatmap"><i class="fa fa-circle-o text-red"></i> <span>热力追踪</span></a></li>
+                <li><a href="/dataCenter"><i class="fa fa-circle-o text-yellow"></i> <span>灾害报表</span></a></li>
+                <li><a href="/mission"><i class="fa fa-circle-o text-aqua"></i> <span>任务中心</span></a></li>
+                <li><a href="/privilege"><i class="fa fa-circle-o text-pink"></i> <span>管理员权限</span></a></li>
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                任务中心
+                <small>发布与反馈</small>
+            </h1>
+
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- SELECT2 EXAMPLE -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">任务发布</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>任务地点</label>
+                                <select class="form-control select2" style="width: 100%;">
+                                    <option>请选择</option>
+                                    <option>建设122号</option>
+                                    <option>春熙路人民商场</option>
+                                    <option>府青路2段B区停车场</option>
+                                    <option>前锋路地铁C口</option>
+                                    <option>火车北站售票大厅</option>
+                                    <option>猛追湾幸福里3弄</option>
+                                </select>
+                            </div>
+                            <!-- /.form-group -->
+                            <div class="form-group">
+                                <label>工作时间</label>
+                                <select class="form-control select2" style="width: 100%;">
+                                    <option>请选择</option>
+                                    <option>7:00-9:00</option>
+                                    <option>9:00-11:00</option>
+                                    <option>11:00-13:00</option>
+                                    <option>13:00-15:00</option>
+                                    <option>15:00-17:00</option>
+                                    <option>17:00-19:00</option>
+                                    <option>19:00-21:00</option>
+                                </select>
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>推荐设备</label>
+                                <select class="form-control select2" multiple="multiple"
+                                        data-placeholder="请选择用户设备"
+                                        style="width: 100%;">
+                                    <option>小米note系列</option>
+                                    <option>华为P系列</option>
+                                    <option>iphone6</option>
+                                    <option>三星galaxy系列</option>
+                                    <option>锤子</option>
+                                    <option>1加</option>
+                                </select>
+                            </div>
+                            <!-- /.form-group -->
+                            <div class="form-group">
+                                <label>语音助手</label>
+                                <select class="form-control select2" style="width: 100%;" multiple="multiple"
+                                        data-placeholder="手机默认">
+                                    <option>小爱同学</option>
+                                    <option>天猫精灵</option>
+                                    <option>Bixby</option>
+                                    <option>siri</option>
+                                    <option>Cortana</option>
+                                    <option>Alexa</option>
+                                </select>
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="form-group">
+                        <label class="btn btn-default pull-right" style="margin-right: 30px;"
+                               onclick="lijifabu()">立即发布</label>
+
+                        <button type="button" class="btn btn-default pull-left" id="daterange-btn">
+                    <span>
+                      <i class="fa fa-calendar"></i> 日期选择
+                    </span>
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+
+                <div class="box-footer ">
+                    <label class="pull-right">查看 <a href="#">《任务发布指南》</a> 了解任务发布与反馈操作</label>
+
+                </div>
+            </div>
+
+            <div class="col-md-8" style="width: 835px; padding-left: 0px">
+                <!-- MAP & BOX PANE -->
+                <!-- /.box -->
+                <!-- /.row -->
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-info" style="width: 835px;height:297px;margin-right: 0px;">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">用户反馈</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table class="table no-margin">
+                                <thead>
+                                <tr>
+                                    <th>用户名</th>
+                                    <th>任务地点</th>
+                                    <th>反馈类别</th>
+                                    <th>时间</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><a href="pages/examples/invoice.html"></a></td>
+                                    <td></td>
+                                    <td><span class="label label-success"></span></td>
+                                    <td>
+                                        <div class="sparkbar" data-color="#00a65a" data-height="20"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="pages/examples/invoice.html"></a></td>
+                                    <td></td>
+                                    <td><span class="label label-danger"></span></td>
+                                    <td>
+                                        <div class="sparkbar" data-color="#f56954" data-height="20"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="pages/examples/invoice.html"></a></td>
+                                    <td></td>
+                                    <td><span class="label label-info"></span></td>
+                                    <td>
+                                        <div class="sparkbar" data-color="#00c0ef" data-height="20"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="pages/examples/invoice.html"></a></td>
+                                    <td></td>
+                                    <td><span class="label label-danger"></span></td>
+                                    <td>
+                                        <div class="sparkbar" data-color="#ffffff" data-height="20"></div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer clearfix">
+                        <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">查看全部</a>
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <div class="col-md-6"
+                 style="width: 700px;height: 320px; margin-left: 20px; padding-right: 0px;width: 783px;">
+                <!-- AREA CHART -->
+                <!-- /.box -->
+
+                <!-- DONUT CHART -->
+                <div class="box box-danger" style="height: 300px;">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">本周任务调度反馈</h3>
+
+                    </div>
+                    <div class="col-md-4 pull-right" style="margin-top: 70px">
+                        <ul class="chart-legend clearfix" style="line-height: 22px">
+                            <li><i class="fa fa-circle-o text-red"></i> 已发布</li>
+                            <li><i class="fa fa-circle-o text-green"></i> 查看人次</li>
+                            <li><i class="fa fa-circle-o text-aqua"></i> 已接收人次</li>
+                            <li><i class="fa fa-circle-o text-light-blue"></i> 已回收</li>
+                            <li><i class="fa fa-circle-o text-gray"></i> 待回收</li>
+                        </ul>
+                    </div>
+                    <div class="box-body" style="display: -webkit-box;">
+                        <canvas id="pieChart"></canvas>
+                    </div>
+
+                    <!-- /.box-body -->
+                </div>
+
+                <!-- /.box -->
+
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- interactive chart -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-bar-chart-o"></i>
+
+                            <h3 class="box-title">实时上报人次</h3>
+
+                            <div class="box-tools pull-right">
+                                实时显示
+                                <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                                    <button type="button" class="btn btn-default btn-xs active" data-toggle="on">On
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div id="interactive" style="height: 300px;"></div>
+                        </div>
+                        <!-- /.box-body-->
+                    </div>
+                    <!-- /.box -->
+
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script>
+    var wenzi = document.querySelector('body > div > aside > section > div > div.pull-left.info > a > i').nextSibling
+    wenzi.textContent = '超级管理员'
+    var user_pri = '{{ current_user.privilege }}'
+    if (user_pri < 3) {
+        document.querySelector('body > div > aside > section > ul > li:nth-child(5)').remove()
+        wenzi.textContent = '高级管理员'
+    }
+</script>
+
+<script>
+    function lijifabu() {
+        var area
+        var time
+        var date
+        var recommend_phones = []
+        var recommend_voiceasses = []
+
+        selects = document.querySelector('body > div.wrapper > div > section.content > div.box.box-default > div.box-body').getElementsByTagName('select')
+        area = selects[0].value
+        time = selects[1].value
+
+        recommend_phone = document.querySelector('body > div.wrapper > div > section.content > div.box.box-default > div.box-body > div.row > div:nth-child(2) > div:nth-child(1) > span > span.selection > span > ul').getElementsByClassName('select2-selection__choice')
+        for (let i = 0; i < recommend_phone.length; i++) {
+            recommend_phones.push(recommend_phone[i].title)
+        }
+        recommend_phones.join(";")
+        recommend_voiceass = document.querySelector('body > div.wrapper > div > section.content > div.box.box-default > div.box-body > div.row > div:nth-child(2) > div:nth-child(2) > span > span.selection > span > ul').getElementsByClassName('select2-selection__choice')
+        for (let i = 0; i < recommend_voiceass.length; i++) {
+            recommend_voiceasses.push(recommend_voiceass[i].title)
+        }
+        recommend_phones.join(";")
+        date = document.querySelector('#daterange-btn > span').textContent
+        var http;
+        if (window.XMLHttpRequest) {
+            http = new XMLHttpRequest();
+        }
+        else {
+            http = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        http.onreadystatechange = function () {
+            if (http.readyState == 4 && http.status == 200) {
+                var text = http.response;
+                alert(text)
+                missionquery()
+            }
+        }
+        http.open("GET", "/addmission?area=" + area + "&time=" + time + "&date=" + date + "&recommend_phones=" + recommend_phones + "&recommend_voiceasses=" + recommend_voiceasses, true);
+        http.send();
+    }
+</script>
+<script src="static/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="static/bower_components/chart.js/Chart.js"></script>
+<script>
+    var text, text2 = [-1, 0, 0, 0, 0]
+    var username = []
+    var area = []
+    var fankuileibie = []
+    var time = []
+    for (let i = 1; i < 5; i++) {
+        username[i] = document.querySelector('body > div.wrapper > div > section.content > div.col-md-8 > div > div.box-body > div > table > tbody > tr:nth-child(' + i + ') > td:nth-child(1) > a')
+    }
+    for (let i = 1; i < 5; i++) {
+        area[i] = document.querySelector('body > div.wrapper > div > section.content > div.col-md-8 > div > div.box-body > div > table > tbody > tr:nth-child(' + i + ') > td:nth-child(2)')
+    }
+    for (let i = 1; i < 5; i++) {
+        fankuileibie[i] = document.querySelector('body > div.wrapper > div > section.content > div.col-md-8 > div > div.box-body > div > table > tbody > tr:nth-child(' + i + ') > td:nth-child(3) > span')
+    }
+    for (let i = 1; i < 5; i++) {
+        time[i] = document.querySelector('body > div.wrapper > div > section.content > div.col-md-8 > div > div.box-body > div > table > tbody > tr:nth-child(' + i + ') > td:nth-child(4) > div')
+    }
+
+    function newform() {
+        var http;
+        if (window.XMLHttpRequest) {
+            http = new XMLHttpRequest();
+        }
+        else {
+            http = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        http.onreadystatechange = function () {
+            if (http.readyState == 4 && http.status == 200) {
+                var forms = http.response;
+                forms = JSON.parse(forms);
+                for (let i = 0; i < forms.length; i++) {
+                    username[i + 1].textContent = forms[i]['username']
+                    area[i + 1].textContent = forms[i]['area']
+                    time[i + 1].textContent = forms[i]['time']
+                    fankuileibie[i + 1].textContent = forms[i]['fankuileibie']
+                }
+            }
+        }
+        http.open("GET", "/newform", true);
+        http.send();
+    }
+
+
+    function missionquery() {
+        var http;
+        if (window.XMLHttpRequest) {
+            http = new XMLHttpRequest();
+        }
+        else {
+            http = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        http.onreadystatechange = function () {
+            if (http.readyState == 4 && http.status == 200) {
+                text = http.response;
+                text = text.split(':')
+                if (text[0] != text2[0] || text[1] != text2[1] || text[2] != text2[2] || text[3] != text2[3] || text[4] != text2[4]) {
+                    yuanbiao()
+                    if (text[3] != text2[3]) {
+                        newform()
+                    }
+                    text2 = text
+                }
+            }
+        }
+        http.open("GET", "/missondata", false);
+        http.send();
+    }
+
+    missionquery()
+    setInterval(function () {
+        missionquery()
+    }, 5000)
+
+    function yuanbiao() {
+        $('#pieChart').remove();
+        var para = document.createElement("canvas");//创建需要增加的元素节点
+        para.id = 'pieChart'
+        para.style.height = '200px'
+        document.querySelector('body > div.wrapper > div > section.content > div.col-md-6 > div > div.box-body').appendChild(para)
+        $(function () {
+            var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+            var pieChart = new Chart(pieChartCanvas)
+            var PieData = [
+                {
+                    value: text[0],
+                    color: '#f56954',
+                    highlight: '#f56954',
+                    label: '已发布'
+                },
+                {
+                    value: text[1],
+                    color: '#00a65a',
+                    highlight: '#00a65a',
+                    label: '查看人次'
+                },
+                {
+                    value: text[2],
+                    color: '#00c0ef',
+                    highlight: '#00c0ef',
+                    label: '已接收人次'
+                },
+                {
+                    value: text[3],
+                    color: '#3c8dbc',
+                    highlight: '#3c8dbc',
+                    label: '已回收'
+                },
+                {
+                    value: text[4],
+                    color: '#d2d6de',
+                    highlight: '#d2d6de',
+                    label: '待回收'
+                }
+            ]
+            var pieOptions = {
+                //Boolean - Whether we should show a stroke on each segment
+                segmentShowStroke: true,
+                //String - The colour of each segment stroke
+                segmentStrokeColor: '#fff',
+                //Number - The width of each segment stroke
+                segmentStrokeWidth: 2,
+                //Number - The percentage of the chart that we cut out of the middle
+                percentageInnerCutout: 50, // This is 0 for Pie charts
+                //Number - Amount of animation steps
+                animationSteps: 100,
+                //String - Animation easing effect
+                animationEasing: 'easeOutBounce',
+                //Boolean - Whether we animate the rotation of the Doughnut
+                animateRotate: true,
+                //Boolean - Whether we animate scaling the Doughnut from the centre
+                animateScale: false,
+                //Boolean - whether to make the chart responsive to window resizing
+                responsive: true,
+                // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+                maintainAspectRatio: true,
+                //String - A legend template
+            }
+            pieChart.Doughnut(PieData, pieOptions)
+            document.querySelector("#pieChart").setAttribute('style', 'height:240px')
+        })
+    }
+</script>
+<script src="static/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="static/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="static/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="static/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="static/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="static/bower_components/moment/min/moment.min.js"></script>
+<script src="static/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="static/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="static/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+<script src="static/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<script src="static/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="static/plugins/iCheck/icheck.min.js"></script>
+<script src="static/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="static/dist/js/adminlte.min.js"></script>
+<script src="static/dist/js/demo.js"></script>
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Datemask dd/mm/yyyy
+        $('#datemask').inputmask('dd/mm/yyyy', {'placeholder': 'dd/mm/yyyy'})
+        //Datemask2 mm/dd/yyyy
+        $('#datemask2').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'})
+        //Money Euro
+        $('[data-mask]').inputmask()
+
+        //Date range picker
+        $('#reservation').daterangepicker()
+        //Date range picker with time picker
+        $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'})
+        //Date range as a button
+        $('#daterange-btn').daterangepicker(
+            {
+                ranges: {
+                    '今天': [moment(), moment()],
+                    '明天': [moment().add(1, 'days'), moment().add(1, 'days')],
+                    '未来七天': [moment(), moment().add(6, 'days')],
+                    '未来30天': [moment(), moment().add(29, 'days')],
+                },
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment()
+            },
+            function (start, end) {
+                $('#daterange-btn span').html(start.format('M·D') + ' - ' + end.format('M·D'))
+            })
+
+        //Date picker
+        $('#datepicker').datepicker({
+            autoclose: true
+        })
+
+        //iCheck for checkbox and radio inputs
+        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass: 'iradio_minimal-blue'
+        })
+        //Red color scheme for iCheck
+        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+            checkboxClass: 'icheckbox_minimal-red',
+            radioClass: 'iradio_minimal-red'
+        })
+        //Flat red color scheme for iCheck
+        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green'
+        })
+
+        //Colorpicker
+        $('.my-colorpicker1').colorpicker()
+        //color picker with addon
+        $('.my-colorpicker2').colorpicker()
+
+        //Timepicker
+        $('.timepicker').timepicker({
+            showInputs: false
+        })
+    })
+</script>
+<script src="static/bower_components/Flot/jquery.flot.js"></script>
+<script src="static/bower_components/Flot/jquery.flot.categories.js"></script>
+<script>
+    $(function () {
+        var data = [], totalPoints = 50
+        for (let i = 0; i < 50; i++) {
+            data.push([i, 0])
+        }
+
+        function getRandomData() {
+            var http;
+            if (window.XMLHttpRequest) {
+                http = new XMLHttpRequest();
+            }
+            else {
+                http = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            http.onreadystatechange = function () {
+                if (http.readyState == 4 && http.status == 200) {
+                    data.splice(0, 1)
+                    for (let i = 0; i < data.length; i++) {
+                        data[i][0] = i
+                    }
+                    data[49] = [totalPoints - 1, parseInt(http.response)]
+                }
+            }
+            http.open("GET", "/realtime", true);
+            http.send();
+            return data
+        }
+
+        var interactive_plot = $.plot('#interactive', [getRandomData()], {
+            grid: {
+                borderColor: '#f3f3f3',
+                borderWidth: 1,
+                tickColor: '#f3f3f3'
+            },
+            series: {
+                shadowSize: 0, // Drawing is faster without shadows
+                color: '#3c8dbc'
+            },
+            lines: {
+                fill: true, //Converts the line chart to area chart
+                color: '#3c8dbc'
+            },
+            yaxis: {
+                min: 0,
+                max: 50,
+                show: true
+            },
+            xaxis: {
+                show: true
+            }
+        })
+
+        var updateInterval = 1000 //Fetch data ever x milliseconds
+        var realtime = 'on' //If == to on then fetch data every x seconds. else stop fetching
+        function update() {
+
+            interactive_plot.setData([getRandomData()])
+
+            // Since the axes don't change, we don't need to call plot.setupGrid()
+            interactive_plot.draw()
+            if (realtime === 'on')
+                setTimeout(update, updateInterval)
+        }
+
+        //INITIALIZE REALTIME DATA FETCHING
+        if (realtime === 'on') {
+            update()
+        }
+
+        $('#realtime .btn').click(function () {
+            if (realtime === 'on') {
+                realtime = 'off'
+                $(this)[0].className = "btn btn-default btn-xs"
+            }
+            else {
+                realtime = 'on'
+                $(this)[0].className = "btn btn-default btn-xs active"
+
+            }
+            update()
+        })
+    })
+
+
+</script>
+</body>
+</html>
